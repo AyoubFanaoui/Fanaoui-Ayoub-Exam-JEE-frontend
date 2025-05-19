@@ -1,0 +1,50 @@
+<div class="container mt-5" style="max-width: 600px;">
+  <h2 class="mb-4 text-center">Ajouter un Remboursement</h2>
+
+  <form (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+
+    <div class="mb-3">
+      <label for="date" class="form-label">Date <span class="text-danger">*</span></label>
+      <input type="date" id="date" name="date" required class="form-control" />
+      <div class="invalid-feedback">La date est obligatoire.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="amount" class="form-label">Montant <span class="text-danger">*</span></label>
+      <input type="number" id="amount" name="amount" required class="form-control" min="0" step="0.01" />
+      <div class="invalid-feedback">Veuillez entrer un montant valide.</div>
+    </div>
+
+    <fieldset class="mb-3">
+      <legend class="col-form-label pt-0">Type <span class="text-danger">*</span></legend>
+      <span class="form-check">
+        <input class="form-check-input" type="radio" name="type" id="typeSelect" value="" checked />
+        <label class="form-check-label" for="typeSelect">
+          Veuillez sélectionner
+        </label>
+      </span>
+      <span class="form-check">
+        <input class="form-check-input" type="radio" name="type" id="typeMensualite" value="mensualite" />
+        <label class="form-check-label" for="typeMensualite">
+          Mensualité
+        </label>
+      </span>
+      <span class="form-check">
+        <input class="form-check-input" type="radio" name="type" id="typeRemboursementAnticipe" value="remboursement_anticipe" />
+        <label class="form-check-label" for="typeRemboursementAnticipe">
+          Remboursement Anticipé
+        </label>
+      </span>
+    </fieldset>
+
+    <div class="mb-3">
+      <label for="credit" class="form-label">Crédit <span class="text-danger">*</span></label>
+      <input type="number" id="credit" name="credit" required class="form-control" min="0" />
+      <div class="invalid-feedback">Veuillez entrer un crédit valide.</div>
+    </div>
+
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary btn-block">Ajouter Remboursement</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,90 @@
+<div class="container py-4">
+
+  <!-- Formulaire Client -->
+  <div class="card shadow-sm border-0 mb-4 rounded-4">
+    <div class="card-header bg-primary text-white rounded-top-4">
+      <h5 class="mb-0">
+        <i class="bi bi-person-plus-fill me-2"></i>
+        {{ editing ? 'Modifier Client' : 'Ajouter un nouveau client' }}
+      </h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #clientForm="ngForm">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="nom" class="form-label">Nom</label>
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              class="form-control rounded-pill"
+              [(ngModel)]="newClient.nom"
+              required>
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control rounded-pill"
+              [(ngModel)]="newClient.email"
+              required>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4 gap-2">
+          <button type="submit" class="btn btn-success px-4 rounded-pill">
+            {{ editing ? 'Mettre à jour' : 'Ajouter' }}
+          </button>
+          @if (editing) {
+            <button type="button" class="btn btn-outline-secondary px-4 rounded-pill" (click)="resetForm()">
+              Annuler
+            </button>
+          }
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Liste des Clients -->
+  <div class="card shadow-sm border-0 rounded-4">
+    <div class="card-header bg-light rounded-top-4">
+      <h5 class="mb-0">
+        <i class="bi bi-people-fill me-2"></i>
+        Liste des clients
+      </h5>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped align-middle text-center">
+          <thead class="table-primary">
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+            @for (client of clients; track client.id) {
+              <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.email }}</td>
+                <td>
+                  <button class="btn btn-sm btn-outline-warning me-2 rounded-pill" (click)="editClient(client)">
+                    <i class="bi bi-pencil-square"></i> Modifier
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger rounded-pill" (click)="deleteClient(client.id)">
+                    <i class="bi bi-trash"></i> Supprimer
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
